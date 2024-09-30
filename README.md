@@ -1,6 +1,9 @@
 # Assesement for Candidates applying for the position of SSE(ROR)
 
 Please follow the instructions below to complete the tasks and showcase your proficiency in Ruby on Rails. This assesement will be focussed on refactoring and code optimization techniques.
+## Prerequisites
+
+Redis should be installed. You can use this tutorial to install redis `https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-redis-on-ubuntu-22-04` or google some other guide according to the OS you are using
 
 ## Getting Started
 
