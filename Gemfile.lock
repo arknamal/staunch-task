@@ -84,6 +84,7 @@ GEM
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
     concurrent-ruby (1.2.3)
+    connection_pool (2.4.1)
     crass (1.0.6)
     cssbundling-rails (1.4.0)
       railties (>= 6.0.0)
@@ -98,6 +99,8 @@ GEM
       responders
       warden (~> 1.2.3)
     erubi (1.12.0)
+    faker (3.2.3)
+      i18n (>= 1.8.11, < 2)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.1)
@@ -121,6 +124,7 @@ GEM
       net-smtp
     marcel (1.0.2)
     matrix (0.4.2)
+    memory_profiler (1.0.2)
     method_source (1.0.0)
     mini_mime (1.1.5)
     minitest (5.22.2)
@@ -147,6 +151,8 @@ GEM
       nio4r (~> 2.0)
     racc (1.7.3)
     rack (2.2.8)
+    rack-mini-profiler (3.3.1)
+      rack (>= 1.2.0)
     rack-test (2.1.0)
       rack (>= 1.3)
     rails (7.0.8)
@@ -181,6 +187,8 @@ GEM
     rdoc (6.6.2)
       psych (>= 4.0.0)
     redis (4.8.1)
+    redis-client (0.21.0)
+      connection_pool
     regexp_parser (2.9.0)
     reline (0.4.2)
       io-console (~> 0.5)
@@ -194,6 +202,11 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    sidekiq (7.2.2)
+      concurrent-ruby (< 2)
+      connection_pool (>= 2.3.0)
+      rack (>= 2.2.4)
+      redis-client (>= 0.19.0)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -201,6 +214,7 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
+    stackprof (0.2.26)
     stimulus-rails (1.3.3)
       railties (>= 6.0.0)
     stringio (3.1.0)
@@ -236,15 +250,20 @@ DEPENDENCIES
   cssbundling-rails
   debug
   devise
+  faker
   jbuilder
   jsbundling-rails
+  memory_profiler
   pagy
   pg (~> 1.1)
   puma (~> 5.0)
+  rack-mini-profiler
   rails (~> 7.0.8)
   redis (~> 4.0)
   selenium-webdriver
+  sidekiq
   sprockets-rails
+  stackprof
   stimulus-rails
   turbo-rails
   tzinfo-data

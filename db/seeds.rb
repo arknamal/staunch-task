@@ -5,3 +5,9 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+ActiveRecord::Base.transaction do
+  user = User.create!(email: "blogger@test.com", password: 'admin123')
+  100_000.times do
+    Blog.create!(title: Faker::Lorem.sentence , body: Faker::Lorem.paragraph, user_id: user.id)
+  end
+end

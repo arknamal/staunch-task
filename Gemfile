@@ -76,3 +76,11 @@ group :test do
 end
 gem 'devise'
 gem 'pagy'
+gem 'faker'
+gem 'sidekiq'
+gem 'rack-mini-profiler'
+# For memory profiling
+gem 'memory_profiler'
+
+# For call-stack profiling flamegraphs
+gem 'stackprof'
