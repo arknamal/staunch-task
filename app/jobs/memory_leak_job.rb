@@ -4,7 +4,7 @@ class MemoryLeakJob < ApplicationJob
   # The purpose of this job to take each blog record and send it to an api and save that api response. 
 
   def perform
-    blogs = Blog.limit
+    blogs = Blog.all
     
     blogs.each do |blog|
       validate_and_process(blog)
