@@ -1,4 +1,4 @@
-# Assesement for Candidates applying for the position of SE(ROR)
+# Assesement for Candidates applying for the position of SSE(ROR)
 
 Please follow the instructions below to complete the tasks and showcase your proficiency in Ruby on Rails. This assesement will be focussed on refactoring and code optimization techniques.
 
@@ -32,23 +32,19 @@ Please follow the instructions below to complete the tasks and showcase your pro
      ```
    - Open your browser and visit `http://localhost:3000` to see the application running.
 
+
 ## Tasks
 
-### Task 1: Optimization
+### Optimization Task 1
 
-- There is a `Blog` CRUD in the app and it also has an import action in `BlogsController` which takes a csv file and import all the records. The challenge is to optimize that action in a way that it takes file of 50k to 100k records and create blogs. You need to take care of memory and database optimization and make sure that it does not crash
-
-
-### Task 2: Refactoring
-
-- There is an `EmployeesController` with CRUD actions which is integrated with an API which provides Employees Data. The task is to refactor the bloated controller using design patterns in a way that integration should work as it is with seperation of concerns.
+- There is a `Blog` CRUD in the app and it also has an import action in `BlogsController` which takes a csv file and import all the records. The challenge is to optimize that action in a way that it takes file of 100k+ records and create blogs. You need to take care of memory and database optimization and make sure that it does not crash
 
 
-### Task 3: Refactoring Views
+### Optmization Task 2
 
-- The task is to audit the views files and do refactor the code where needed.  
+- There is a `MemoryLeakJob` in the app. The task is to identify memory intensive chunks of the code and optimize it in a way that the job processes 100k+ records with minimal amount of memory. You should also take care of the memory in case multiple jobs are enqueued. 
 
-### Task 4 - Optional and Open Ended
+### Task 3 - Optional and Open Ended
 
 - Do a overall code audit and improve code quality of models, controller,views or any other aspect 
 
