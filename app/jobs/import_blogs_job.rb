@@ -12,7 +12,9 @@ class ImportBlogsJob < ApplicationJob
     # This array will keep failed rows and their errors logs to be displayed at the end (after import)
     failed_rows = []
 
-    # Read and import the CSV file in chunks of 1000 rows (GPT says foreach is faster than parse)
+    # Read and import the CSV file in chunks of 1000 rows (GPT says foreach is faster than parse although
+    # a stackoverflow post benchmarking both says that their is negligible difference - our use case
+    # is row-by-row so I preferred foreach as it goes row by row)
     CSV.foreach(csv_file, headers: true).each_slice(1000) do |rows|
       # Convert each row to a hash readying it for validation and import
       blog_attrs = rows.map(&:to_h)
