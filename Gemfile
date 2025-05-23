@@ -84,3 +84,4 @@ gem 'memory_profiler'
 
 # For call-stack profiling flamegraphs
 gem 'stackprof'
+gem 'activerecord-import'

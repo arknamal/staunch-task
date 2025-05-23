@@ -1,4 +1,3 @@
-require 'csv'
 class BlogsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_blog, only: %i[ show edit update destroy ]
@@ -62,16 +61,14 @@ class BlogsController < ApplicationController
   end
 
   def import
-    file = params[:attachment]
-    data = CSV.parse(file.to_io, headers: true, encoding: 'utf8')
-    # Start code to handle CSV data
-    ActiveRecord::Base.transaction do
-      data.each do |row|
-        current_user.blogs.create!(row.to_h)
-      end
+    if params[:attachment].present?
+      filename = save_csv
+      # Pass the saved file path to the job
+      ::ImportBlogsJob.perform_later(filename.to_s, current_user.id)
+      redirect_to blogs_path, notice: "Blog import started in the background."
+    else
+      redirect_to blogs_path, alert: "Please upload a valid CSV file!"
     end
-    # End code to handle CSV data
-    redirect_to blogs_path
   end
 
   private
@@ -83,5 +80,21 @@ class BlogsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def blog_params
       params.require(:blog).permit(:title, :body, :user_id)
+    end
+
+    def save_csv
+      # Save the uploaded file to a permanent path (as the job will be running in the background)
+      # and we need to access the file later
+      # This is a temporary solution, ideally we should use ActiveStorage or similar
+      # to handle file uploads and storage
+      # For now, we can either pass the file to job (inefficient) or save it
+      uploaded_file = params[:attachment]
+      filename = Rails.root.join('tmp', "import_#{Time.now.to_i}.csv")
+
+      File.open(filename, 'wb') do |file|
+        file.write(uploaded_file.read)
+      end
+
+      filename
     end
 end
