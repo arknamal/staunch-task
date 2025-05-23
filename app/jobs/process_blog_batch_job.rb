@@ -8,6 +8,8 @@ class ProcessBlogBatchJob < ApplicationJob
       next unless blog_valid?(blog)
       # Make an API request and save the response in DB
       blog_to_api(blog)
+      # The array saving the blogs and preventing GC from cleaning them up was serving no purpose
+      # Hence, simply removed it. If there would be a use case for it, we could consider :)
     end
   end
 

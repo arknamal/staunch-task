@@ -8,7 +8,7 @@ class MemoryLeakJob < ApplicationJob
   # The concurrent jobs will be independent of each other and will not share memory.
   def perform
     Blog.find_in_batches(batch_size: 1000) do |batch|
-      BlogBatchJob.perform_later(batch.map(&:id))
+      ProcessBlogBatchJob.perform_later(batch.map(&:id))
     end
   end
 end
