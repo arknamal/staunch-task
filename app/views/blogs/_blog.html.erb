@@ -4,7 +4,7 @@
     <td><%= blog.title %></td>
     <td><%= blog.body %></td>
     <td><%= blog.user.email %></td>
-    
+
     <% if blog.user == current_user %>
       <td><a href="<%= edit_blog_path(blog)%>" class="card-link">Edit</a></td>
     <% end %>

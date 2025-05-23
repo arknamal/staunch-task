@@ -14,16 +14,15 @@
     </thead>
     <tbody>
       <% @employees.dig("data").each do |e| %>
-      <tr>
-        <th scope="row"><%= e.dig("id") %></th>
-        <td><%= e.dig("name") %></td>
-        <td><%= e.dig("salary") %></td>
-        <td><%= e.dig("position") %></td>
-        <td><%= e.dig("date_of_birth") %></td>
-        <td><%= link_to 'Edit', edit_employee_path(e["id"]) %> </td>
-        <td><%= link_to 'Show', employee_path(e["id"]) %> </td>
-  
-      </tr>
+        <tr>
+          <th scope="row"><%= e.dig("id") %></th>
+          <td><%= e.dig("name") %></td>
+          <td><%= e.dig("salary") %></td>
+          <td><%= e.dig("position") %></td>
+          <td><%= e.dig("date_of_birth") %></td>
+          <td><%= link_to 'Edit', edit_employee_path(e["id"]) %> </td>
+          <td><%= link_to 'Show', employee_path(e["id"]) %> </td>
+        </tr>
       <% end %>
     </tbody>
   </table>
