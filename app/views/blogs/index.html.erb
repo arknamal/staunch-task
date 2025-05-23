@@ -1,27 +1,26 @@
 <p style="color: green"><%= notice %></p>
 
-
 <div class="container" id="blogs">
-<h1>Blogs</h1>
+  <h1>Blogs</h1>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Title</th>
-      <th scope="col">Body</th>
-      <th scope="col">User</th>
-      <th colspan="2" scope="col">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-  <% @blogs.each do |blog| %>
-   <%= render blog %>  
-  <% end %>
-  </tbody>
-</table>
-<%== pagy_bootstrap_nav(@pagy) %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Title</th>
+        <th scope="col">Body</th>
+        <th scope="col">User</th>
+        <th colspan="2" scope="col">Actions</th>
+      </tr>
+    </thead>
 
+    <tbody>
+      <% @blogs.each do |blog| %>
+        <%= render blog %>
+      <% end %>
+    </tbody>
+  </table>
+  <%== pagy_bootstrap_nav(@pagy) %>
 </div>
 
 

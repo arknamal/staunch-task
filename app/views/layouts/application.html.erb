@@ -12,85 +12,82 @@
 
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="<%= root_path %>"><img width="136" src="https://staunch.co/images/logo.svg"></a>
+      <div class="container-fluid">
+        <a class="navbar-brand" href="<%= root_path %>"><img width="136" src="https://staunch.co/images/logo.svg"></a>
 
-    
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <% if user_signed_in? %>
-        <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="<%= new_blog_path %>">New Blog</a>
-        </li>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-        <li class="nav-item">
-          <a class="nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal" aria-current="page" href="#">Import Blogs </a>
-        </li>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <% if user_signed_in? %>
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="<%= new_blog_path %>">New Blog</a>
+              </li>
 
-        <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="<%= employees_path %>">Employees</a>
-        </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal" aria-current="page" href="#">Import Blogs </a>
+              </li>
 
-        <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="<%= new_employee_path %>">New Employee</a>
-        </li>
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="<%= employees_path %>">Employees</a>
+              </li>
 
-        
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <%= current_user.email %>
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li>
-              <%= link_to "Edit Profile", edit_user_registration_path, class: 'dropdown-item' %>
-            </li>
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="<%= new_employee_path %>">New Employee</a>
+              </li>
 
-            <!--<li><a class="dropdown-item" href="#">Another action</a></li>-->
-            <li><hr class="dropdown-divider"></li>
-            <li><%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete }, class: 'dropdown-item' %></li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <%= current_user.email %>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li>
+                    <%= link_to "Edit Profile", edit_user_registration_path, class: 'dropdown-item' %>
+                  </li>
+                  <!--<li><a class="dropdown-item" href="#">Another action</a></li>-->
+                  <li><hr class="dropdown-divider"></li>
+                  <li><%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete }, class: 'dropdown-item' %></li>
+                </ul>
+              </li>
+            <% end %>
+            <!--<li class="nav-item">
+              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            </li>-->
           </ul>
-        </li>
-        <% end %>
-        <!--<li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>-->
-      </ul>
-      <!--<form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>-->
+          <!--<form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>-->
+        </div>
+      </div>
+    </nav>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Import Blogs</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <%= form_tag("/blogs/import", :method => "post", :multipart => true) do %>
+          <div class="modal-body">
+              <%= file_field_tag 'attachment' %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <%= submit_tag "Save", class: "btn btn-primary" %>
+          </div>
+          <% end %>
+        </div>
+      </div>
     </div>
-  </div>
-</nav>
 
-
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Import Blogs</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <%= form_tag("/blogs/import", :method => "post", :multipart => true) do %>
-      <div class="modal-body">
-          <%= file_field_tag 'attachment' %>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <%= submit_tag "Save", class: "btn btn-primary" %>
-      </div>
-      <% end %>
+    <div class="container">
+      <%= yield %>
     </div>
-  </div>
-</div>
-  <div class="container">
-    <%= yield %>
-  </div>
 
   </body>
 </html>
